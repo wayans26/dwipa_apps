@@ -7,6 +7,7 @@ use App\Http\Controllers\menuGroupController;
 use App\Http\Controllers\qzController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\roleController;
+use App\Http\Controllers\transaksiTengkiController;
 use App\Http\Controllers\userManagerController;
 use App\Http\Controllers\visitorPrint;
 use App\Http\Middleware\adminRole;
@@ -84,6 +85,12 @@ Route::prefix($version)->group(function () use ($prefixWeb, $prefixMobile) {
                 Route::post('/user/manager/edit', 'editUserManager')->middleware('permission:user_manager,update');
                 Route::post('/user/manager/password/change', 'changePasswordUserManager')->middleware('permission:user_manager,update');
                 Route::post('/user/manager/delete', 'deleteUserManager')->middleware('permission:user_manager,delete');
+            });
+
+            Route::controller(transaksiTengkiController::class)->group(function () {
+                Route::get('/transaksi/tengki/get', 'get_transaksi_tengki')->middleware('permission:transaksi_tengki,view');
+                Route::post('/transaksi/tengki/add', 'add_periode')->middleware('permission:transaksi_tengki,create');
+                Route::get('/transaksi/tengki/detail/get', 'get_transaksi_tengki_detail')->middleware('permission:transaksi_tengki,view');
             });
         });
     });

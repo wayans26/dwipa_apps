@@ -14,6 +14,10 @@ const pageName = [{
         label: "User Manager",
         value: "user_manager"
     },
+    {
+        label: "Transaksi Tengki",
+        value: "transaksi_tengki"
+    },
 ];
 
 export default pageName;

@@ -42,6 +42,21 @@ const routes = [{
         meta: {
             parent: "user_manager",
         }
+    }, {
+        path: prefix + "/transaksi/tengki",
+        name: "transaksi_tengki",
+        component: () => import("../Page/transaksi_tengki.vue"),
+        meta: {
+            parent: "tengki",
+        }
+    },
+    {
+        path: prefix + "/transaksi/tengki/detail/:id",
+        name: "transaksi_tengki_detail",
+        component: () => import("../Page/transaksi_tengki_detail.vue"),
+        meta: {
+            parent: "tengki",
+        }
     },
     {
         path: "/:pathMatch(.*)*",
