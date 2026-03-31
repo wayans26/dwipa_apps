@@ -1,0 +1,15 @@
+*
+!public/
+!.gitignore
+!Profile
+Profile/*
+!AssetDocument
+!qz
+!qz/*
+AssetDocument/*
+!AssetImage
+AssetImage/*
+!LicensePermitDocument
+LicensePermitDocument/*
+!Reports
+Reports/*

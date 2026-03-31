@@ -1,0 +1,44 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.6",
+        "@vitejs/plugin-vue": "^4.5.0",
+        "axios": "^1.8.4",
+        "bootstrap": "^5.2.3",
+        "laravel-vite-plugin": "^1.0",
+        "sass": "^1.56.1",
+        "vite": "^5.0",
+        "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "@chenfengyuan/vue-barcode": "^2.0.2",
+        "@vuepic/vue-datepicker": "^12.1.0",
+        "apexcharts": "^5.6.0",
+        "chart.js": "^4.5.1",
+        "js-file-download": "^0.4.12",
+        "jsbarcode": "^3.12.1",
+        "lodash.debounce": "^4.0.8",
+        "qrcode.vue": "^3.6.0",
+        "qz-tray": "^2.2.5",
+        "sweetalert2": "^11.26.3",
+        "vee-validate": "^4.15.1",
+        "vue": "^3.4.38",
+        "vue-chart-3": "^4.0.1",
+        "vue-content-loader": "^2.0.1",
+        "vue-loader": "^17.4.2",
+        "vue-qrcode-reader": "^5.7.3",
+        "vue-router": "^4.4.3",
+        "vue-select": "^4.0.0-beta.6",
+        "vue-sweetalert2": "^5.0.11",
+        "vue-to-print": "^1.5.1",
+        "vue3-apexcharts": "^1.10.0",
+        "vue3-carousel": "^0.17.0",
+        "vue3-print-nb": "^0.1.4",
+        "yup": "^1.7.1"
+    }
+}

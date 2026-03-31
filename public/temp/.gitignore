@@ -1,0 +1,13 @@
+# ignore semua file & folder di dalam temp
+*
+
+# tapi jangan ignore file ini
+!.gitignore
+
+# jangan ignore folder barcode & image
+!barcode/
+!image/
+
+# ignore isi di dalam kedua folder
+barcode/*
+image/*
