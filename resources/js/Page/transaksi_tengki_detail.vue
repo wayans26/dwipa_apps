@@ -155,6 +155,29 @@ export default {
                 }
             );
         },
+        get_trx_by_id() {
+            this.globalLoader.show = true;
+            const vm = this;
+            axios.post("/api/v1/web/transaksi/tengki/id", {
+                id: vm.id_trx
+            }, {
+                headers: {
+                    token: localStorage.getItem('token'),
+                }
+            }).then(res => {
+                if (res.data.status == 1) {
+                    swalNotif.success(res.data.message);
+                } else {
+                    swalNotif.error(res.data.message);
+                }
+            }).catch(res => {
+                swalNotif.error("Error Adding Transaksi!");
+
+            }).finally(function () {
+                vm.disabled = false;
+                vm.globalLoader.show = false;
+            });
+        },
         add_transaksi() {
             this.globalLoader.show = true;
             const vm = this;
@@ -264,6 +287,7 @@ export default {
         this.loading = false;
         setTimeout(() => {
             this.get_transaksi();
+            this.get_trx_by_id()
 
             $("#tableTransaksi").on('click', '.btnDetail', function () {
                 const id = this.id;

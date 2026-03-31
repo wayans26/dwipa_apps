@@ -91,6 +91,7 @@ Route::prefix($version)->group(function () use ($prefixWeb, $prefixMobile) {
                 Route::get('/transaksi/tengki/get', 'get_transaksi_tengki')->middleware('permission:transaksi_tengki,view');
                 Route::post('/transaksi/tengki/add', 'add_periode')->middleware('permission:transaksi_tengki,create');
                 Route::get('/transaksi/tengki/detail/get', 'get_transaksi_tengki_detail')->middleware('permission:transaksi_tengki,view');
+                Route::post('/transaksi/tengki/id', 'get_transaksi_tengki_id')->middleware('permission:transaksi_tengki,create');
             });
         });
     });

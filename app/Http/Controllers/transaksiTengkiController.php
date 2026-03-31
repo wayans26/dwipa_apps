@@ -120,4 +120,55 @@ class transaksiTengkiController extends Controller
             })
             ->make(true);
     }
+
+    function get_transaksi_tengki_id(Request $req)
+    {
+        $validate = Validator::make($req->all(), [
+            'id'    => 'required'
+        ]);
+
+        if ($validate->fails()) {
+            return responseMessage::responseMessage(0, $validate->errors()->first(), 200);
+        }
+
+        $transaksi_tengki = transaksi_tengki::query()
+            ->withSum([
+                'transaksi_tengki_detail as total_pengeluaran' => function ($query) {
+                    $query->whereIn('type', ['pengeluaran', 'gaji']);
+                }
+            ], 'total')
+            ->withSum([
+                'transaksi_tengki_detail as total_pemasukan' => function ($query) {
+                    $query->whereIn('type', ['pemasukan', 'init']);
+                }
+            ], 'total')
+            ->where('id', $req->id)
+            ->first();
+        $lastTrx = transaksi_tengki_detail::where('transaksi_tengki_id', $req->id)->orderBy('tanggal', 'desc')->first();
+        $lastDate = Carbon::now();
+        if (!empty($lastTrx)) {
+            $lastDate = Carbon::parse($lastTrx->tanggal)->addDay();
+        }
+
+        $pengeluaran = $transaksi_tengki->total_pengeluaran === null ? 0 : $transaksi_tengki->total_pengeluaran;
+        $pemasukan = $transaksi_tengki->total_pemasukan === null ? 0 : $transaksi_tengki->total_pemasukan;
+
+        return responseMessage::responseMessageWithData(1, "Success", 200, array(
+            'pengeluaran'   => $pengeluaran,
+            'pemasukan'     => $pemasukan,
+            'total'         => $pemasukan - $pengeluaran,
+            'lastDate'      => $lastDate->format('Y-m-d')
+        ));
+    }
+
+    function add_detail_transaksi(Request $req)
+    {
+        $validate = Validator::make($req->all(), [
+            'transaksi_tengki_id'   => 'required|integer',
+            'tanggal'               => 'required|date_format:Y-m-d',
+            'type'                  => 'required|in:pengeluaran,pemasukan,gaji',
+            'harga'                 => 'required|integer',
+            'jumlah_ret'            => 'required|integer'
+        ]);
+    }
 }
